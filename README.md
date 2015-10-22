@@ -1,5 +1,7 @@
 # MeanListApp
 
+Socially authenticated List app, built on the MEAN stack
+
 This app was started as an excercise in learning the MEAN stack - Mongo, Express, Angular and Node.
 Most example applications dealt with only a single function or controller, so here is an example bringing together multiple components into a useable product.
 
