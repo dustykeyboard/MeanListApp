@@ -4,7 +4,7 @@ var User			= require( './../models/users.js' );
 
 // Opens App Routes
 module.exports = function( app ){
-	
+
 	// GET Routes
 	app.get('/api/users/', function( req, res ){
 		console.log( '// Find all users in db' );

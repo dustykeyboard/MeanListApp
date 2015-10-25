@@ -4,16 +4,10 @@
   "private": true,
   "main": "server.js",
   "dependencies": {
-    "bcrypt-nodejs": "*",
     "body-parser": "^1.14.1",
-    "cookie-parser": "*",
-    "connect-flash": "*",
     "express": "^4.13.3",
     "jade": "^1.11.0",
-    "jsonwebtoken": "*",
     "method-override": "*",
-    "mongoose": "^4.1.11",
-    "passport": "*",
-    "passport-local": "*"
+    "mongoose": "^4.1.11"
   }
 }
