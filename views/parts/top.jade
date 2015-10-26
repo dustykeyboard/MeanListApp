@@ -8,8 +8,7 @@
 				span.icon-bar
 			a.navbar-brand(href="/") MeanListApp
 		.navbar-collapse.collapse#navbar
-			- var currentUser = { username: 'User', lists: [] }
-			case currentUser
+			case user
 				when null
 					p.navbar-text.navbar-right 
 						a.navbar-link(href="/login") Login 
@@ -22,12 +21,12 @@
 							a.dropdown-toggle(href="#",data-toggle="dropdown",role="button",aria-haspopup="true",aria-expanded="false") My Lists
 								span.caret
 							ul.dropdown-menu
-								if currentUser.lists
-									each list in currentUser.lists
+								if false
+									each list in []
 										li
 											a(href="/lists/"+list._id)= list.title
 									li.divider(role="separator")
 								li
 									a(href="/lists/new") Create a List
 					p.navbar-text.navbar-right Hello 
-						a.navbar-link(href="/logout")= currentUser.username
+						a.navbar-link(href="/logout")= user.name
