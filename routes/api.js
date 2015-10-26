@@ -22,7 +22,7 @@ module.exports = function( app ){
 		});
 	});
 	app.get( '/api/users/:user', function( req, res, next ){
-		User.find({ id: req.params.user }).exec( function( err, users ){
+		User.findOne({ id: req.params.user }).exec( function( err, users ){
 			if( err ) res.send( err );
 			res.json( users );
 		});
@@ -49,7 +49,7 @@ module.exports = function( app ){
 		});
 	});
 	app.get('/api/lists/:list', function( req, res, next ){
-		List.find({ id: req.param.list }).exec( function( err, lists ){
+		List.findOne({ id: req.param.list }).exec( function( err, lists ){
 			if( err ) res.send( err );
 			res.json( lists );
 		});
@@ -83,7 +83,7 @@ module.exports = function( app ){
 		});
 	});
 	app.get( '/api/items/:item', function( req, res, next ){
-		Item.find({ id: req.params.item }).exec( function( err, items ){
+		Item.findOne({ id: req.params.item }).exec( function( err, items ){
 			if( err ) res.send( err );
 			res.json( items );
 		});

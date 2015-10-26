@@ -2,9 +2,9 @@ var mongoose    = require( 'mongoose' );
 var Schema      = mongoose.Schema;
 
 var ListSchema = new Schema({
-  user: { type: String, required: true },
+  user: { type: String, required: true, index: true },
   title: { type: String, required: true },
-  items: { type: Array, default: [] },
+  description: { type: String },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
 });
