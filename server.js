@@ -20,6 +20,7 @@ app.use( bodyParser.json({ type: 'application/vnd.api+json' }) );
 app.use( methodOverride() );
 
 // Routes
+require( './routes/api.js' )( app );
 require( './routes/index.js' )( app );
 require( './routes/users.js' )( app );
 require( './routes/lists.js' )( app );
