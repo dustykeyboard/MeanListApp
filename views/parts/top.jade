@@ -9,24 +9,27 @@
 			a.navbar-brand(href="/") MeanListApp
 		.navbar-collapse.collapse#navbar
 			case user
-				when null
+				when false
 					p.navbar-text.navbar-right 
-						a.navbar-link(href="/login") Login 
+						a.navbar-link(href="/login") Login
+						| 
 						| or 
-						a.navbar-link(href="/register") Register
-						
+						a.navbar-link(href="/register") Register						
 				default
 					ul.nav.navbar-nav.navbar-right
 						li.dropdown
 							a.dropdown-toggle(href="#",data-toggle="dropdown",role="button",aria-haspopup="true",aria-expanded="false") My Lists
 								span.caret
 							ul.dropdown-menu
-								if false
-									each list in []
+								if lists
+									each list in lists
 										li
 											a(href="/lists/"+list._id)= list.title
 									li.divider(role="separator")
 								li
 									a(href="/lists/new") Create a List
+								li.divider(role="separator")
+								li
+									a(href="/logout") Logout
 					p.navbar-text.navbar-right Hello 
-						a.navbar-link(href="/logout")= user.name
+						a.navbar-link(href="/users/"+user.username)= user.name

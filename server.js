@@ -41,15 +41,17 @@ passport.deserializeUser( function( id, next ){
 	});
 })
 
-app.use( require( 'express-session' )({ 'secret': 'i spend my money on coffee', 'resave': false, 'saveUnitialized': false }));
+app.use( require( 'express-session' )({ 'secret': 'i spend my money on coffee', 'resave': false }));
 
 app.use( passport.initialize() );
 app.use( passport.session() );
 
 app.use(function(req, res, next) {
-  console.log( 'Adding user to res' );
-  console.log( req.user );
-  res.locals.user = req.user;
+  res.locals.user = false;
+  if( req.user ){
+    res.locals.user = req.user;
+    res.locals.lists = []; 
+  }
   next();
 });
 

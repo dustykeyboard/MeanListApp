@@ -66,3 +66,50 @@ angular.module('app')
 		return $http.delete(`/api/items/${id}`);
 	}
 });
+
+
+angular.module('app')
+.controller('UserCtrl', function ($scope, UserSvc) {
+	$scope.users = [];
+
+	$scope.refresh = function () {
+		UserSvc.fetch()
+		.then( function( response ) {
+			console.log( response );
+			$scope.users = response.data;
+		});
+	}
+
+	$scope.addUser = function () {
+		UserSvc.add( $scope.newUser );
+		$scope.newUser = {};
+		$scope.refresh();
+	}
+
+	$scope.deleteUser = function ( idx ) {
+		var user = $scope.users[idx];
+		UserSvc.delete(user._id);
+		$scope.refresh();
+	}
+
+	$scope.refresh();
+});
+
+angular.module('app')
+.service('UserSvc', function ($http) {
+	this.fetch = function () {
+		return $http.get( '/api/users' );
+	};
+	
+	this.add = function (user) {
+		return $http.post( '/api/users', user )
+	};
+	
+	this.update = function (id, user) {
+		return $http.put( '/api/users/'+id, user );
+	}
+	
+	this.delete = function (id) {
+		return $http.delete( '/api/users/'+id );
+	}
+});
