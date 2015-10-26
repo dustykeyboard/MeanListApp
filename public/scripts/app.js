@@ -2,68 +2,104 @@
 
 angular.module('app', []);
 
+
 angular.module('app')
-.controller('ListCtrl', function ($scope, ListSvc) {
-	$scope.title = 'Loading';
-	$scope.id = null;
+.controller('ItemCtrl', function ($scope, ItemSvc) {
 	$scope.items = [];
-	
+
 	$scope.refresh = function () {
-		ListSvc.fetchList( $scope.id )
-		.then( function( list ) {
-			console.log(list.data);
-			console.log('List Title is', list.data.title);
-			$scope.title = list.data.title;
-			$scope.items = list.data.items;
+		ItemSvc.list()
+		.then( function( response ) {
+			console.log( response );
+			$scope.items = response.data;
 		});
 	}
-	
+
 	$scope.addItem = function () {
-		ListSvc.add( $scope.newItem );
+		ItemSvc.add( $scope.newItem );
 		$scope.newItem = {};
 		$scope.refresh();
 	}
-	
-	$scope.done = function ( idx ) {
-		var item = $scope.items[idx];
-		ListSvc.done(item._id);
-		$scope.refresh();
-	}
-	
-	$scope.undone = function ( idx ) {
-		var item = $scope.items[idx];
-		ListSvc.undone(item._id);
-		$scope.refresh();
-	}
-	
+
 	$scope.deleteItem = function ( idx ) {
 		var item = $scope.items[idx];
-		ListSvc.delete(item._id);
+		ItemsSvc.delete(item._id);
 		$scope.refresh();
 	}
+
+	$scope.refresh();
+});
+
+angular.module('app')
+.service('ItemSvc', function ($http) {
+	this.list = function() {
+		return $http.get( '/api/items' );
+	};
+
+	this.get = function( id ) {
+		return $http.get( '/api/items/'+id );
+	};
+
+	this.add = function( item ) {
+		return $http.post( '/api/items', item )
+	};
 	
-	$scope.init = function( id ) {
-		$scope.id = id;
-		$scope.refresh();
+	this.update = function( id, item ) {
+		return $http.put( '/api/items/'+id, item );
+	}
+	
+	this.delete = function( id ) {
+		return $http.delete( '/api/items/'+id );
 	}
 });
 
 angular.module('app')
-.service('ListSvc', function ($http) {
-	this.fetchList = function (id) {
-		return $http.get('/api/list/'+id);
-	};
+.controller('ListCtrl', function ($scope, ListSvc) {
+	$scope.lists = [];
 	
-	this.add = function (item) {
-		return $http.post('/api/items', item)
-	};
-	
-	this.done = function (id) {
-		return $http.put(`/api/items/${id}`);
+	$scope.refresh = function () {
+		ListSvc.list()
+		.then( function( response ) {
+			console.log( response.data );
+			$scope.items = response.data;
+		});
 	}
 	
-	this.delete = function (id) {
-		return $http.delete(`/api/items/${id}`);
+	$scope.addList = function () {
+		ListSvc.add( $scope.newList );
+		$scope.newList = {};
+		$scope.refresh();
+	}
+	
+	$scope.deleteList = function ( idx ) {
+		var list = $scope.lists[idx];
+		ListSvc.delete(list._id);
+		$scope.refresh();
+	}
+
+	$scope.refresh();
+});
+
+angular.module('app')
+.service('ListSvc', function ($http) {
+	this.list = function() {
+		return $http.get( '/api/lists' );
+	};
+	
+	this.get = function( id ) {
+		return $http.get( '/api/lists/'+id );
+	};
+	
+	this.add = function( list ) {
+		return $http.post( '/api/lists', list )
+	};
+	
+	this.update = function( id, update) {
+		return $http.put( '/api/lists/'+id, list );
+	}
+	
+	this.delete = function( id ) {
+		return $http.delete( '/api/lists/'+id ); 
 	}
 });
 
@@ -73,7 +109,7 @@ angular.module('app')
 	$scope.users = [];
 
 	$scope.refresh = function () {
-		UserSvc.fetch()
+		UserSvc.list()
 		.then( function( response ) {
 			console.log( response );
 			$scope.users = response.data;
@@ -97,19 +133,23 @@ angular.module('app')
 
 angular.module('app')
 .service('UserSvc', function ($http) {
-	this.fetch = function () {
+	this.list = function() {
 		return $http.get( '/api/users' );
 	};
-	
-	this.add = function (user) {
+
+	this.get = function( id ) {
+		return $http.get( '/api/users/'+id );
+	};
+
+	this.add = function( user ) {
 		return $http.post( '/api/users', user )
 	};
 	
-	this.update = function (id, user) {
+	this.update = function( id, user ) {
 		return $http.put( '/api/users/'+id, user );
 	}
 	
-	this.delete = function (id) {
+	this.delete = function( id ) {
 		return $http.delete( '/api/users/'+id );
 	}
 });
