@@ -60,10 +60,11 @@ angular.module('app')
 
 angular.module('app')
 .controller('ListCtrl', function ($scope, ListSvc) {
+	$scope.username = null;
 	$scope.lists = [];
 	
 	$scope.refresh = function () {
-		ListSvc.list()
+		ListSvc.list( $scope.username )
 		.then( function( response ) {
 			console.log( response.data );
 			$scope.lists = response.data;
@@ -71,7 +72,7 @@ angular.module('app')
 	}
 	
 	$scope.addList = function () {
-		ListSvc.add( $scope.newList );
+		ListSvc.add( $scope.newList, $scope.username );
 		$scope.newList = {};
 		$scope.refresh();
 	}
@@ -82,20 +83,24 @@ angular.module('app')
 		$scope.refresh();
 	}
 
-	$scope.refresh();
+	$scope.init = function( username ){
+		$scope.username = username;
+		$scope.refresh();
+	}
 });
 
 angular.module('app')
 .service('ListSvc', function ($http) {
-	this.list = function() {
-		return $http.get( '/api/lists' );
+	this.list = function( username ) {
+		return $http.get( '/api/users/'+username+'/lists' );
 	};
 	
 	this.get = function( id ) {
 		return $http.get( '/api/lists/'+id );
 	};
 	
-	this.add = function( list ) {
+	this.add = function( list, username ) {
+		list.user = username;
 		return $http.post( '/api/lists', list )
 	};
 	

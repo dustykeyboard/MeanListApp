@@ -1,7 +1,7 @@
 extends ./parts/layout.jade
 
 block content
-	.container(ng-controller="ListCtrl")
+	.container(ng-controller="ListCtrl",ng-init="init( '"+user.username+"' )")
 		h1
 			a(href="/lists") Lists
 		.row
