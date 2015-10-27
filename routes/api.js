@@ -1,5 +1,4 @@
 // Dependencies
-var mongoose 		= require( 'mongoose' );
 var User			= require( './../models/users.js' );
 var List			= require( './../models/lists.js' );
 var Item			= require( './../models/items.js' );

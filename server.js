@@ -38,7 +38,7 @@ passport.deserializeUser( function( id, next ){
 	});
 })
 
-app.use( require( 'express-session' )({ 'secret': 'i spend my money on coffee', 'resave': false }));
+app.use( require( 'express-session' )({ 'secret': 'i spend my money on coffee', 'resave': false, 'saveUninitialized': false }));
 
 app.use( passport.initialize() );
 app.use( passport.session() );
