@@ -1,0 +1,21 @@
+extends ./parts/layout.jade
+
+block content
+	.container(ng-controller="ListCtrl")
+		h1
+			a(href="/lists") Lists
+		.row
+			.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+				.panel.panel-default
+					ul.list-group
+						li.list-group-item(ng-repeat="list in lists")
+							a(href="/lists/{{list._id}}") {{list.title}}
+				.panel-footer
+					form(ng-submit="addList()")
+						.input-group
+							span.input-group-addon
+								span.glyphicon.glyphicon-plus
+							input.form-control(ng-model="newList.title")
+							span.input-group-btn
+								input.btn.btn-primary(type="submit",value="add")
+							

@@ -92,6 +92,18 @@ module.exports = function( app ){
 		// TODO: Update item
 	});
 	app.delete( '/api/items/:item', function( req, res, next ){
-		// TODO: Delete item
+		Item.findByIdAndRemove( req.params.item , function( err, item ){
+			if( err ) res.send( err );
+			res.json({ 'success':true });
+		});
 	});
+	
+	// Items in List
+	app.get( '/api/lists/:list/items', function( req, res, next ){
+		Item.find({ list: req.params.list }).exec(
+		function( err, items ){
+			if( err) res.send( err );
+			res.json( items );
+		});
+	})
 }

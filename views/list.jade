@@ -1,9 +1,0 @@
-extends ./parts/layout.jade
-
-block content
-	.container(ng-controller="ListCtrl",ng-init="init( '"+id+"' )")
-		h1
-			a(href="/lists/"+id) {{title}}
-		.row
-			.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
-				include ./parts/list.jade

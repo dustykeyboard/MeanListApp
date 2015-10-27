@@ -5,42 +5,47 @@ angular.module('app', []);
 
 angular.module('app')
 .controller('ItemCtrl', function ($scope, ItemSvc) {
+	$scope.list = null;
 	$scope.items = [];
 
-	$scope.refresh = function () {
-		ItemSvc.list()
+	$scope.refresh = function(){
+		ItemSvc.list( $scope.list )
 		.then( function( response ) {
 			console.log( response );
 			$scope.items = response.data;
 		});
 	}
 
-	$scope.addItem = function () {
-		ItemSvc.add( $scope.newItem );
+	$scope.addItem = function(){
+		ItemSvc.add( $scope.newItem, $scope.list );
 		$scope.newItem = {};
 		$scope.refresh();
 	}
 
-	$scope.deleteItem = function ( idx ) {
+	$scope.deleteItem = function( idx ){
 		var item = $scope.items[idx];
-		ItemsSvc.delete(item._id);
+		ItemSvc.delete(item._id);
 		$scope.refresh();
 	}
 
-	$scope.refresh();
+	$scope.init = function( list ){
+		$scope.list = list;
+		$scope.refresh();
+	}
 });
 
 angular.module('app')
 .service('ItemSvc', function ($http) {
-	this.list = function() {
-		return $http.get( '/api/items' );
+	this.list = function( list ) {
+		return $http.get( '/api/lists/'+list+'/items' );
 	};
 
 	this.get = function( id ) {
 		return $http.get( '/api/items/'+id );
 	};
 
-	this.add = function( item ) {
+	this.add = function( item, list ) {
+		item.list = list;
 		return $http.post( '/api/items', item )
 	};
 	
@@ -61,7 +66,7 @@ angular.module('app')
 		ListSvc.list()
 		.then( function( response ) {
 			console.log( response.data );
-			$scope.items = response.data;
+			$scope.lists = response.data;
 		});
 	}
 	

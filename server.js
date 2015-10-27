@@ -20,20 +20,17 @@ passport.use( new Strategy(
       if ( err ) return next( err )
       if ( !user ) return next( null, false );
       if ( user.password != password ) return next( null, false );
-      console.log( 'successful auth', username, password );
-      console.log( user );
+      console.log( 'successful auth', username );
       return next( null, user );
     })
   }
 ));
 
 passport.serializeUser( function( user, next ){
-  console.log( 'serializeUser', user._id );
 	next( null, user._id );
 });
 
 passport.deserializeUser( function( id, next ){
-  console.log( 'deserializeUser' );
 	User.findOne({ _id: id}).exec( function( err, user ){
 		if( err ) return next( err );
 		if( !user ) return next( null, false );

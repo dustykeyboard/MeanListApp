@@ -1,3 +1,6 @@
 .navbar-text.navbar-right {
 	margin-right: 15px;
 }
+.badge.del {
+	cursor: pointer;
+}

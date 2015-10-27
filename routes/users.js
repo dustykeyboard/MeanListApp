@@ -1,7 +1,3 @@
-// Dependencies
-var mongoose 		= require( 'mongoose' );
-var User			= require( './../models/users.js' );
-
 // Opens App Routes
 module.exports = function( app ){
 
@@ -9,7 +5,7 @@ module.exports = function( app ){
 	app.get('/users/', function( req, res ){
 		res.render( 'users.jade' );
 	});
-	app.get('/users/:user', function( req, res ){
-		res.render( 'users.jade' );
+	app.get('/users/:username', function( req, res ){
+		res.render( 'users.jade', { profile: req.params.username });
 	});
 }
