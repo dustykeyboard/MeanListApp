@@ -13,7 +13,7 @@ module.exports = function( app, passport ){
 	app.post( '/login', 
 		passport.authenticate( 'local', { failureRedirect: '/login?fail' }),
 		function(req, res) {
-			res.redirect( '/' );
+			res.redirect( '/lists' );
 	});
 	app.get( '/register', function( req, res, next ){
 		res.render( 'register.jade' );
