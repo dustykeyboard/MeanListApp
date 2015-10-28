@@ -9,7 +9,7 @@ module.exports = function( app ){
 		res.render( 'lists.jade' );
 	});
 	app.get( '/lists/:list', function( req, res ){
-		res.render( 'items.jade', { list: req.params.list });
+		res.render( 'list.jade', { list: req.params.list });
 	});
 	app.get( '/users/:username/lists', function( req, res, next ){
 		res.render( 'lists.jade', { username: req.params.username });
