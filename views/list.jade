@@ -3,8 +3,7 @@ extends ./parts/layout.jade
 block content
 	.container(ng-controller="ItemCtrl",ng-init="init( '"+list+"' )")
 		h1
-			a(href="/lists/"+list) List 
-				span= list
+			a(href="/lists/"+list) {{list.title}}
 		.row
 			.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
 				.panel.panel-default

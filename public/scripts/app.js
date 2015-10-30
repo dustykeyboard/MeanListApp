@@ -16,6 +16,14 @@ angular.module('app')
 		});
 	}
 
+	$scope.meta = function(){
+		ItemSvc.meta( $scope.list )
+		.then( function( response ) {
+			console.log( response );
+			$scope.list = response.data;
+		});
+	}
+
 	$scope.addItem = function(){
 		ItemSvc.add( $scope.newItem, $scope.list );
 		$scope.newItem = {};
@@ -31,6 +39,7 @@ angular.module('app')
 	$scope.init = function( list ){
 		$scope.list = list;
 		$scope.refresh();
+		$scope.meta();
 	}
 });
 
@@ -56,6 +65,10 @@ angular.module('app')
 	this.delete = function( id ) {
 		return $http.delete( '/api/items/'+id );
 	}
+	this.meta = function( list ) {
+		return $http.get( '/api/lists/'+list );
+	};
+
 });
 
 angular.module('app')
