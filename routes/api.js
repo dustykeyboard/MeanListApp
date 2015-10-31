@@ -48,9 +48,9 @@ module.exports = function( app ) {
 		});
 	});
 	app.get( '/api/lists/:list', function( req, res, next ) {
-		List.findOne({ id: req.param.list }).exec( function( err, lists ) {
+		List.findOne({ id: req.param.list }).exec( function( err, list ) {
 			if( err ) res.send( err );
-			res.json( lists );
+			res.json( list );
 		});
 	});
 	app.put( '/api/lists/:list', function( req, res, next ) {

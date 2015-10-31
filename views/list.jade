@@ -2,11 +2,16 @@ extends ./parts/layout.jade
 
 block content
 	.container(ng-controller="ItemCtrl",ng-init="init( '"+list+"' )")
-		h1
-			a(href="/lists/"+list) {{list.title}}
+		ol.breadcrumb
+			li: a(href="/") Home
+			li: a(href="/lists") My lists
+			li.active {{list.title}}
 		.row
 			.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
 				.panel.panel-default
+					.panel-heading
+						h1.panel-title
+							a(href="/lists/"+list) {{list.title}}
 					ul.list-group
 						li.list-group-item(ng-repeat="item in items")
 							.badge.del(ng-click="deleteItem($index)") &times;
