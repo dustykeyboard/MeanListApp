@@ -7,8 +7,13 @@
 .badge.del {
 	cursor: pointer;
 }
-a,
+a {
+	color: #0cb;
+}
+a:visited {
+	color: #087;
+}
 a:hover,
 a:focus {
-	color: #0cb;
+	color: #0ed;
 }
