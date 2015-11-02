@@ -6,15 +6,31 @@
 				span.icon-bar
 				span.icon-bar
 				span.icon-bar
-			a.navbar-brand(href=user?"/lists":"/") MeanListApp
+			a.navbar-brand(href="/") MeanListApp
 		.navbar-collapse.collapse#navbar
 			ul.nav.navbar-nav
 				case user
 					when false
-						li: a(href="/login") Login
+						li.dropdown
+							a.dropdown-toggle(href="/login",data-toggle="dropdown") Login
+								b.caret
+							.dropdown-menu
+								form(action="/login",method="post",style="padding:1em;width:300px")
+									p
+										.input-group
+											span.input-group-addon
+												span.glyphicon.glyphicon-user
+											input.form-control(name="username",type="text",placeholder="Username")
+									p
+										.input-group
+											span.input-group-addon
+												span.glyphicon.glyphicon-lock
+											input.form-control(name="password",type="password",placeholder="Password")
+									p
+										input.btn.btn-primary.pull-right(type="submit",value="Login")
 						li: a(href="/register") Register
 					default
-						li: a Hello 
+						li.navbar-text Hello 
 							span= user.name
 						li: a(href="/lists") My Lists
 						li: a(href="/logout") Logout

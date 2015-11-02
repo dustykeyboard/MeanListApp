@@ -1,7 +1,7 @@
 extends ./parts/layout.jade
 
 block content
-	.container(ng-controller="ItemCtrl",ng-init="init( '"+list+"' )")
+	.container(ng-controller="ItemCtrl",ng-init="init( '"+listID+"' )")
 		ol.breadcrumb
 			li: a(href="/") Home
 			li: a(href="/lists") My lists

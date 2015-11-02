@@ -2,8 +2,12 @@
 module.exports = function( app, passport ) {
 	
 	// GET Routes
-	app.get('/', function( req, res ) {
-		res.render( 'home.jade' );
+	app.get('/', function( req, res, next ) {
+		if (req.user) {
+			res.render( 'lists.jade' );
+		} else {
+			res.render( 'home.jade' );
+		}
 	});
 	
 	// Login & Registration
@@ -13,7 +17,7 @@ module.exports = function( app, passport ) {
 	app.post( '/login', 
 		passport.authenticate( 'local', { failureRedirect: '/login?fail' } ),
 		function(req, res) {
-			res.redirect( '/lists' );
+			res.redirect( '/' );
 	});
 	app.get( '/register', function( req, res, next ) {
 		res.render( 'register.jade' );
@@ -28,6 +32,6 @@ module.exports = function( app, passport ) {
 	});
 	app.get( '/logout', function( req, res, next ) {
 		req.session.destroy();
-		res.redirect( '/login' );
+		res.redirect( '/' );
 	});
 }
