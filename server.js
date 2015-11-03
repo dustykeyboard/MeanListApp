@@ -7,6 +7,8 @@ var express         = require( 'express' );
 var methodOverride  = require( 'method-override' );
 var mongoose        = require( 'mongoose' );
 var port            = process.env.PORT || 3000;
+var session         = require( 'express-session' );
+var sessionMongo    = require( 'connect-mongo' );
 var app             = express();
 
 // Authentication
@@ -38,7 +40,23 @@ passport.deserializeUser( function( id, next ){
 	});
 })
 
-app.use( require( 'express-session' )({ 'secret': 'i spend my money on coffee', 'resave': false, 'saveUninitialized': false }));
+// Express Config
+mongoose.connect( 'mongodb://localhost/MeanTodoApp' );
+app.use( express.static( __dirname + '/public' ) );
+app.use( bodyParser.json() );
+app.use( bodyParser.urlencoded({ extended: true }) );
+app.use( bodyParser.text() );
+app.use( bodyParser.json({ type: 'application/vnd.api+json' }) );
+app.use( methodOverride() );
+
+app.use(
+  session({
+    mongooseConnection: mongoose.connection ,
+    'secret': 'i spend my money on coffee',
+    'resave': false,
+    'saveUninitialized': false
+  })
+);
 
 app.use( passport.initialize() );
 app.use( passport.session() );
@@ -51,15 +69,6 @@ app.use(function(req, res, next) {
   }
   next();
 });
-
-// Express Config
-mongoose.connect( 'mongodb://localhost/MeanTodoApp' );
-app.use( express.static( __dirname + '/public' ) );
-app.use( bodyParser.json() );
-app.use( bodyParser.urlencoded({ extended: true }) );
-app.use( bodyParser.text() );
-app.use( bodyParser.json({ type: 'application/vnd.api+json' }) );
-app.use( methodOverride() );
 
 // Routes
 require( './routes/api.js' )( app );
