@@ -11,26 +11,14 @@
 			ul.nav.navbar-nav
 				case user
 					when false
-						li.dropdown
-							a.dropdown-toggle(href="/login",data-toggle="dropdown") Login
-								b.caret
-							.dropdown-menu
-								form(action="/login",method="post",style="padding:1em;width:300px")
-									p
-										.input-group
-											span.input-group-addon
-												span.glyphicon.glyphicon-user
-											input.form-control(name="username",type="text",placeholder="Username")
-									p
-										.input-group
-											span.input-group-addon
-												span.glyphicon.glyphicon-lock
-											input.form-control(name="password",type="password",placeholder="Password")
-									p
-										input.btn.btn-primary.pull-right(type="submit",value="Login")
-						li: a(href="/register") Register
+						li
+							a.btn.btn-primary(href="/login",data-toggle="modal",data-target="#loginModal") Login
+						li
+							a(href="/register") Register
 					default
 						li.navbar-text Hello 
 							span= user.name
-						li: a(href="/lists") My Lists
-						li: a(href="/logout") Logout
+						li
+							a(href="/") My Lists
+						li
+							a(href="/logout") Logout

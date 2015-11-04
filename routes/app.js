@@ -9,12 +9,20 @@ module.exports = function( app, passport ) {
 			res.render( 'home.jade' );
 		}
 	});
+	app.get( '/lists/:list', function( req, res ) {
+		res.render( 'list.jade', { listID: req.params.list } );
+	});
 	
 	// Login & Registration
 	app.get( '/login', function( req, res, next ) {
 		res.render( 'login.jade' );
 	})
 	app.post( '/login', 
+		passport.authenticate( 'local', { failureRedirect: '/login?fail' } ),
+		function(req, res) {
+			res.redirect( '/' );
+	});
+	app.post( '/', 
 		passport.authenticate( 'local', { failureRedirect: '/login?fail' } ),
 		function(req, res) {
 			res.redirect( '/' );

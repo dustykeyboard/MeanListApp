@@ -72,9 +72,7 @@ app.use(function(req, res, next) {
 
 // Routes
 require( './routes/api.js' )( app );
-require( './routes/index.js' )( app, passport );
-require( './routes/users.js' )( app );
-require( './routes/lists.js' )( app );
+require( './routes/app.js' )( app, passport );
 
 app.get( '/status', function( req, res, next ){
   res.json({ status: true });
