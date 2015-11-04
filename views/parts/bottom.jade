@@ -1,10 +1,10 @@
-.modal.fade#loginModal(tabindex="-1",role="dialog",aria-labelledby"loginModalLabel")
+#loginModal.modal.fade(tabindex="-1",role="dialog",aria-labelledby="loginModalLabel")
 	.modal-dialog(role="document")
 		.modal-content
 			.modal-header
 				button.close(type="button",data-dismiss="modal",aria-label="Close"): span(aria-hidden="true") &times;
 			.modal-body
-				form(action="/login",method="post",style="padding:1em;width:300px")
+				form(action="/",method="post")
 					p
 						.input-group
 							span.input-group-addon
