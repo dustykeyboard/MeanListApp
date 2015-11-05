@@ -1,13 +1,24 @@
 extends ./parts/layout.jade
 
 block content
-	.container(ng-controller="ItemCtrl",ng-init="init( '"+listID+"' )")
-		ol.breadcrumb
-			li: a(href="/") Home
-			li: a(href="/lists") My lists
-			li.active {{list.title}}
+	.container
 		.row
-			.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+			.col-md-6(id="ListCtrl",ng-controller="ListCtrl",ng-init="init( '"+user.username+"' )")
+				.panel.panel-default
+					.panel-heading
+						h1.panel-title My Lists
+					ul.list-group
+						li.list-group-item(ng-repeat="list in lists")
+							a(href="/lists/{{list._id}}") {{list.title}}
+					.panel-footer
+						form(ng-submit="addList()")
+							.input-group
+								span.input-group-addon
+									span.glyphicon.glyphicon-plus
+								input.form-control(ng-model="newList.title")
+								span.input-group-btn
+									input.btn.btn-primary(type="submit",value="add")
+			.col-md-6(id="ItemCtrl",ng-controller="ItemCtrl",ng-init="init('"+ ListID +"')")
 				.panel.panel-default
 					.panel-heading
 						h1.panel-title
