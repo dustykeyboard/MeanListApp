@@ -38,6 +38,7 @@ angular.module('app')
 	}
 
 	$scope.init = function( listID ){
+		console.log('initialising with listID: ', listID);
 		$scope.listID = listID;
 		$scope.refresh();
 		$scope.meta();
@@ -98,6 +99,7 @@ angular.module('app')
 	}
 
 	$scope.init = function( username ){
+		console.log('initialising with user: ', username);
 		$scope.username = username;
 		$scope.refresh();
 	}
