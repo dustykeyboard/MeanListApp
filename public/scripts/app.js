@@ -4,12 +4,42 @@ angular.module('app', []);
 
 
 angular.module('app')
-.controller('ItemCtrl', function ($scope, ItemSvc) {
+.controller('AppCtrl', function ($scope, ListSvc, ItemSvc) {
+	$scope.username = null;
+	$scope.lists = [];
 	$scope.listID = null;
 	$scope.list = [];
 	$scope.items = [];
+	$scope.username = null;
+	$scope.lists = [];
 
-	$scope.refresh = function(){
+	$scope.refreshLists = function () {
+		ListSvc.list( $scope.username )
+		.then( function( response ) {
+			console.log( response.data );
+			$scope.lists = response.data;
+		});
+	}
+
+	$scope.addList = function () {
+		ListSvc.add( $scope.newList, $scope.username );
+		$scope.newList = {};
+		$scope.refreshLists();
+	}
+
+	$scope.deleteList = function ( idx ) {
+		var list = $scope.lists[idx];
+		ListSvc.delete(list._id);
+		$scope.refreshLists();
+	}
+
+	$scope.initApp = function( username ){
+		console.log('initialising with user: ', username);
+		$scope.username = username;
+		$scope.refreshLists();
+	}
+
+	$scope.refreshItems = function(){
 		ItemSvc.list( $scope.listID )
 		.then( function( response ) {
 			console.log( response );
@@ -37,10 +67,10 @@ angular.module('app')
 		$scope.refresh();
 	}
 
-	$scope.init = function( listID ){
+	$scope.loadList = function( listID ){
 		console.log('initialising with listID: ', listID);
 		$scope.listID = listID;
-		$scope.refresh();
+		$scope.refreshItems();
 		$scope.meta();
 	}
 });
@@ -71,38 +101,6 @@ angular.module('app')
 		return $http.get( '/api/lists/'+list );
 	};
 
-});
-
-angular.module('app')
-.controller('ListCtrl', function ($scope, ListSvc) {
-	$scope.username = null;
-	$scope.lists = [];
-
-	$scope.refresh = function () {
-		ListSvc.list( $scope.username )
-		.then( function( response ) {
-			console.log( response.data );
-			$scope.lists = response.data;
-		});
-	}
-
-	$scope.addList = function () {
-		ListSvc.add( $scope.newList, $scope.username );
-		$scope.newList = {};
-		$scope.refresh();
-	}
-
-	$scope.deleteList = function ( idx ) {
-		var list = $scope.lists[idx];
-		ListSvc.delete(list._id);
-		$scope.refresh();
-	}
-
-	$scope.init = function( username ){
-		console.log('initialising with user: ', username);
-		$scope.username = username;
-		$scope.refresh();
-	}
 });
 
 angular.module('app')
