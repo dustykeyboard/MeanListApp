@@ -54,7 +54,7 @@ module.exports = function( app ) {
 		});
 	});
 	app.put( '/api/lists/:list', function( req, res, next ) {
-		// TODO: Update list
+		// TODO: Update/rename list
 	});
 	app.delete( '/api/lists/:list', function (req, res, next ) {
 		// TODO: Check that it is owned by current user
