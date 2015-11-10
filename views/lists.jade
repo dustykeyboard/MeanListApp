@@ -9,7 +9,7 @@ block content
 						h1.panel-title My Lists
 					ul.list-group
 						li.list-group-item(ng-repeat="list in lists")
-							a(ng-click="loadList({{list._id}})") {{list.title}}
+							a(ng-click="loadList(list._id)") {{list.title}}
 					.panel-footer
 						form(ng-submit="addList()")
 							.input-group
@@ -19,7 +19,7 @@ block content
 								span.input-group-btn
 									input.btn.btn-primary(type="submit",value="add")
 			.col-md-6
-				.panel.panel-default
+				.panel.panel-default(ng-show="listID")
 					.panel-heading
 						h1.panel-title
 							a(href="/lists/"+list) {{list.title}}

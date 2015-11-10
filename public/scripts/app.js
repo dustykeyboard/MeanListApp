@@ -58,13 +58,13 @@ angular.module('app')
 	$scope.addItem = function(){
 		ItemSvc.add( $scope.newItem, $scope.listID );
 		$scope.newItem = {};
-		$scope.refresh();
+		$scope.refreshItems();
 	}
 
 	$scope.deleteItem = function( idx ){
 		var item = $scope.items[idx];
 		ItemSvc.delete(item._id);
-		$scope.refresh();
+		$scope.refreshItems();
 	}
 
 	$scope.loadList = function( listID ){
