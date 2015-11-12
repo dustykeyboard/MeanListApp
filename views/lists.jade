@@ -21,8 +21,7 @@ block content
 			.col-md-6
 				.panel.panel-default(ng-show="listID")
 					.panel-heading
-						h1.panel-title
-							a(href="/lists/"+list) {{list.title}}
+						h1.panel-title: {{list.title}}
 					ul.list-group
 						li.list-group-item(ng-repeat="item in items")
 							.badge.del(ng-click="deleteItem($index)") &times;

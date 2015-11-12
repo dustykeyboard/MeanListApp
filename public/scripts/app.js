@@ -48,7 +48,7 @@ angular.module('app')
 	}
 
 	$scope.meta = function(){
-		ItemSvc.meta( $scope.listID )
+		ListSvc.get( $scope.listID )
 		.then( function( response ) {
 			console.log( response );
 			$scope.list = response.data;
@@ -97,10 +97,6 @@ angular.module('app')
 	this.delete = function( id ) {
 		return $http.delete( '/api/items/'+id );
 	}
-	this.meta = function( list ) {
-		return $http.get( '/api/lists/'+list );
-	};
-
 });
 
 angular.module('app')
