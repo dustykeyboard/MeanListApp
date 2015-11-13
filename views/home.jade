@@ -1,19 +1,14 @@
 extends ./parts/layout.jade
 
 block content
-	.jumbotron
-		.container
+	article
 			h1 MeanListApp
 			p Create, share and complete your lists.
 		
-	.container
-		.row
-			.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
-				form(action="/login",method="GET")
-					h2 Start your list
-					.input-group
-						span.input-group-addon
-							span.glyphicon.glyphicon-plus
-						input.form-control(placeholder="Add an item...")
-						span.input-group-btn
-							input.btn.btn-primary(type="submit",value="add")
+	section
+		form(action="/login",method="GET")
+			h2 Start your list
+			p
+				input(placeholder="Add an item...")
+			p
+				input(type="submit",value="add")
