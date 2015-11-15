@@ -1,36 +1,30 @@
 extends ./parts/layout.jade
 
 block content
-	.container(id="AppCtrl",ng-controller="AppCtrl",ng-init="initApp( '"+user.username+"' )")
-		.row
-			.col-md-6
-				.panel.panel-default
-					.panel-heading
-						h1.panel-title My Lists
-					ul.list-group
-						li.list-group-item(ng-repeat="list in lists")
-							a(ng-click="loadList(list._id)") {{list.title}}
-					.panel-footer
-						form(ng-submit="addList()")
-							.input-group
-								span.input-group-addon
-									span.glyphicon.glyphicon-plus
-								input.form-control(ng-model="newList.title")
-								span.input-group-btn
-									input.btn.btn-primary(type="submit",value="add")
-			.col-md-6
-				.panel.panel-default(ng-show="listID")
-					.panel-heading
-						h1.panel-title: {{list.title}}
-					ul.list-group
-						li.list-group-item(ng-repeat="item in items")
-							.badge.del(ng-click="deleteItem($index)") &times;
-							| {{item.title}}
-					.panel-footer
-						form(ng-submit="addItem()")
-							.input-group
-								span.input-group-addon
-									span.glyphicon.glyphicon-plus
-								input.form-control(ng-model="newItem.title")
-								span.input-group-btn
-									input.btn.btn-primary(type="submit",value="add")
+	div(id="AppCtrl",ng-controller="AppCtrl",ng-init="initApp( '"+user.username+"' )")
+		article(ng-hide="listID")
+			h1 My Lists
+			ul
+				li(ng-repeat="list in lists")
+					a(ng-click="loadList(list._id)") {{list.title}}
+			form(ng-submit="addList()")
+				p
+					label(for="title") title
+					input(name="title",type="text",ng-model="newList.title")
+				p
+					input(type="submit",value="Create new List")
+		article(ng-show="listID")
+			h1: {{list.title}}
+			ul
+				li(ng-repeat="item in items")
+					{{item.title}}
+					button(ng-click="deleteItem($index)") &times;
+			form(ng-submit="addItem()")
+				p
+					label(for="title") title
+					input(name="title",type="text",ng-model="newItem.title")
+				p
+					label(for="description") description
+					input(name="description",type="text",ng-model="newItem.description")
+				p
+					input(type="submit",value="Add new Item")

@@ -1,36 +1,20 @@
 extends ./parts/layout.jade
 
 block content
-	.jumbotron
-		.container
-			h1 MeanListApp
-			p Create, share and complete your lists.
-		
-	.container
-		.row
-			.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
-				form(method="post",action="register")
-					h2 Register
-					fieldset
-						p
-							.input-group
-								span.input-group-addon
-									span.glyphicon.glyphicon-user
-								input.form-control(name="name",type="text",placeholder="John Smith")
-						p
-							.input-group
-								span.input-group-addon
-									span.glyphicon.glyphicon-envelope
-								input.form-control(name="email[]",type="email",placeholder="John@email.com")
-					p
-						.input-group
-							span.input-group-addon
-								span.glyphicon.glyphicon-tag
-							input.form-control(name="username",type="text",placeholder="Username")
-					p
-						.input-group
-							span.input-group-addon
-								span.glyphicon.glyphicon-lock
-							input.form-control(name="password",type="password",placeholder="Password")
-					p
-						input.btn.btn-primary.pull-right(type="submit",value="Login")
+	article
+		form(method="post",action="register")
+			h2 Register
+			p
+				label(for="name") Name
+				input(name="name",type="text",placeholder="John Smith")
+			p
+				label(for="email[]") Email
+				input(name="email[]",type="email",placeholder="John@email.com")
+			p
+				lanel(for="username") Username
+				input(name="username",type="text",placeholder="Username")
+			p
+				label(for="password") Password
+				input(name="password",type="password",placeholder="Password")
+			p
+				input(type="submit",value="Login")

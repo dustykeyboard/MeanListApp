@@ -1,20 +1,146 @@
-.navbar-inverse {
-	background-color: #087;
-	background-image: linear-gradient(#0cb, #087);
-}
-.navbar-text.navbar-right {
-	margin-right: 15px;
-}
-.badge.del {
-	cursor: pointer;
+body,
+html {
+    margin: 0;
+    font-size: 1em;
+    line-height: 1.3em;
+    font-family: "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #777;
+    background: #f8f8f8
 }
 a {
-	color: #087;
+    color: #087
 }
 a:visited {
-	color: #5c706f;
+    color: #5c706f
+}
+header a,
+header a:visited {
+    text-decoration: none;
+    color: #087
 }
 a:hover,
-a:focus {
-	color: #0cb;
+a:active,
+header a:hover,
+header a:active {
+    color: #0a9
+}
+header,
+article,
+footer {
+    display: block;
+    max-width: 32em;
+    margin: .5em auto;
+    padding: 1em
+}
+header h1 {
+    font-size: 1.2em
+}
+header h2 {
+    font-size: 1em;
+    font-weight: normal
+}
+nav {
+    margin-top: .5em
+}
+nav a:not(:first-child) {
+    margin-left: .5em
+}
+article {
+    background: #fff;
+    box-shadow: .05em .2em .5em #ccc;
+    transition: 1s
+}
+a[rel="permalink"] {
+    color: #444;
+    text-decoration: none
+}
+date {
+    font-size: .8em;
+    float: right
+}
+.cta,
+.cta:visited {
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    background: #087;
+    padding: .5em 1em;
+    color: #fff;
+    border: 0
+}
+.cta:hover {
+    color: #fff;
+    background: #0a9
+}
+img {
+    max-width: 100%
+}
+.avatar {
+    float: right;
+    max-width: 32%;
+    margin-left: 1em
+}
+.avatar img {
+    display: inline-block;
+    width: 12.5em;
+    height: auto;
+    border-radius: .5em;
+    box-shadow: 0 .2em .5em #5c706f
+}
+@media(min-width:35em) {
+    body {
+        margin: .5em
+    }
+    article {
+        border-radius: .5em
+    }
+}
+input,
+textarea,
+select {
+    padding: .4em;
+    font: 1em/1.4em Tahoma, Sans-serif;
+    color: #666;
+    background: #eee;
+    background-image: linear-gradient(#eee, #ddd);
+    border: 0;
+    margin: 0 0 .5em 0;
+    box-sizing: border-box;
+    width: 100%
+}
+input:focus,
+textarea:focus,
+select:focus {
+    color: #444;
+    background: #eee;
+    border: .1em solid #aaa;
+    color: #087;
+    outline-color: #0a9
+}
+h1,
+h2,
+h3 {
+    color: #444;
+    font-size: 1em;
+    line-height: 1.2em;
+    margin: 0em
+}
+h1 {
+    font-size: 1.44em
+}
+h2 {
+    font-size: 1.2em
+}
+hr {
+    border: 0;
+    height: 1px;
+    background: #ccc
+}
+blockquote {
+    background: #F2F9F8;
+    margin: .5em 0;
+    padding: 0.1em .5em 0.2em 1em;
+    border-left: .2em solid #777;
+    border-radius: .5em
 }
