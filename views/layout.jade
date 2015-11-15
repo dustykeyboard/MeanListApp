@@ -1,0 +1,23 @@
+doctype html
+html(lang="en",ng-app="app")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport",content="width=device-width, initial-scale=1")
+		title MeanListApp
+		link(rel="stylesheet",href="/styles/app.css")
+		script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.js")
+		script(src="/scripts/app.js")
+	body
+		header
+			h1
+				a(href="/") MeanListApp
+			nav
+				case user
+					when false
+						a(href="/login") Login
+						a(href="/register") Register
+					default
+						a(href="/") My Lists
+						a(href="/logout") Logout
+							
+		block content
