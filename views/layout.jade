@@ -7,7 +7,7 @@ html(lang="en",ng-app="app")
 		link(rel="stylesheet",href="/styles/app.css")
 		script(src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.js")
 		script(src="/scripts/app.js")
-	body
+	body(id="AppCtrl",ng-controller="AppCtrl",ng-init="initApp( '"+user.username+"' )")
 		header
 			h1
 				a(href="/") MeanListApp
@@ -19,5 +19,73 @@ html(lang="en",ng-app="app")
 					default
 						a(href="/") My Lists
 						a(href="/logout") Logout
-							
-		block content
+
+		article(ng-hide="listID")
+			h1 My Lists
+			ul
+				li(ng-repeat="list in lists")
+					a(ng-click="loadList(list._id)") {{list.title}}
+			form(ng-submit="addList()")
+				p
+					label(for="title") title
+					input(name="title",type="text",ng-model="newList.title")
+				p
+					input(type="submit",value="Create new List")
+		article(ng-show="listID")
+			h1: {{list.title}}
+			ul
+				li(ng-repeat="item in items")
+					{{item.title}}
+					button(ng-click="deleteItem($index)") &times;
+			form(ng-submit="addItem()")
+				p
+					label(for="title") title
+					input(name="title",type="text",ng-model="newItem.title")
+				p
+					label(for="description") description
+					input(name="description",type="text",ng-model="newItem.description")
+				p
+					input(type="submit",value="Add new Item")
+		
+		article
+				h1 MeanListApp
+				p Create, share and complete your lists.
+			
+		article
+			form(action="/login",method="GET")
+				h2 Start your list
+				p
+					input(placeholder="Add an item...")
+				p
+					input(type="submit",value="add")
+		
+		article#login
+			form(method="post",action="login")
+				h2 Sign In
+				p Create, share and complete your lists.
+				p
+					label(for="username") Username
+					input(name="username",type="text",placeholder="Username")
+				p
+					label(for="password") Password
+					input(name="password",type="password",placeholder="Password")
+				p
+					input(type="submit",value="Login")
+		
+		article#register
+			form(method="post",action="register")
+				h2 Register
+				p
+					label(for="name") Name
+					input(name="name",type="text",placeholder="John Smith")
+				p
+					label(for="email[]") Email
+					input(name="email[]",type="email",placeholder="John@email.com")
+				p
+					lanel(for="username") Username
+					input(name="username",type="text",placeholder="Username")
+				p
+					label(for="password") Password
+					input(name="password",type="password",placeholder="Password")
+				p
+					input(type="submit",value="Login")
