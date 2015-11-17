@@ -34,9 +34,9 @@ html(lang="en",ng-app="app")
 		article(ng-show="listID")
 			h1: {{list.title}}
 			ul
-				li(ng-repeat="item in items")
+				li(ng-repeat="item in items",ng-click="completeItem($index)")
 					{{item.title}}
-					button(ng-click="deleteItem($index)") &times;
+					button(ng-click="deleteItem($index);$event.stopPropagation()") &times;
 			form(ng-submit="addItem()")
 				p
 					label(for="title") title
@@ -51,7 +51,7 @@ html(lang="en",ng-app="app")
 				h1 MeanListApp
 				p Create, share and complete your lists.
 			
-		article
+		article(ng-hide="user")
 			form(action="/login",method="GET")
 				h2 Start your list
 				p
@@ -59,7 +59,7 @@ html(lang="en",ng-app="app")
 				p
 					input(type="submit",value="add")
 		
-		article#login
+		article#login(ng-hide="user")
 			form(method="post",action="login")
 				h2 Sign In
 				p Create, share and complete your lists.
@@ -72,7 +72,7 @@ html(lang="en",ng-app="app")
 				p
 					input(type="submit",value="Login")
 		
-		article#register
+		article#register(ng-hide="user")
 			form(method="post",action="register")
 				h2 Register
 				p

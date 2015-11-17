@@ -66,6 +66,9 @@ angular.module('app')
 		ItemSvc.delete(item._id);
 		$scope.refreshItems();
 	}
+	$scope.completeItem = function( idx ){
+		$scope.items[ idx ].completed = true;
+	}
 
 	$scope.loadList = function( listID ){
 		console.log('initialising with listID: ', listID);
