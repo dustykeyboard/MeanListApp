@@ -20,7 +20,7 @@ html(lang="en",ng-app="app")
 						a(href="/") My Lists
 						a(href="/logout") Logout
 
-		article(ng-hide="listID")
+		article(ng-if="user",ng-hide="listID")
 			h1 My Lists
 			ul
 				li(ng-repeat="list in lists")
@@ -31,7 +31,7 @@ html(lang="en",ng-app="app")
 					input(name="title",type="text",ng-model="newList.title")
 				p
 					input(type="submit",value="Create new List")
-		article(ng-show="listID")
+		article(ng-if="user",ng-show="listID")
 			h1: {{list.title}}
 			ul
 				li(ng-repeat="item in items",ng-click="completeItem($index)")
@@ -50,14 +50,6 @@ html(lang="en",ng-app="app")
 		article(ng-hide="user")
 				h1 MeanListApp
 				p Create, share and complete your lists.
-			
-		article(ng-hide="user")
-			form(action="/login",method="GET")
-				h2 Start your list
-				p
-					input(placeholder="Add an item...")
-				p
-					input(type="submit",value="add")
 		
 		article#login(ng-hide="user")
 			form(method="post",action="login")
