@@ -32,7 +32,7 @@ html(lang="en",ng-app="app")
 				p
 					input(type="submit",value="Create new List")
 		article(ng-if="user",ng-show="listID")
-			h1: {{list.title}}
+			h1 {{list.title}}
 			ul
 				li(ng-repeat="item in items",ng-click="completeItem($index)")
 					{{item.title}}
