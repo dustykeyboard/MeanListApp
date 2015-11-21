@@ -14,8 +14,8 @@ html(lang="en",ng-app="app")
 			nav
 				case user
 					when false
-						a(href="/login") Login
-						a(href="/register") Register
+						a(href="/#login") Login
+						a(href="/#register") Register
 					default
 						a(href="/") My Lists
 						a(href="/logout") Logout
@@ -34,8 +34,7 @@ html(lang="en",ng-app="app")
 		article(ng-if="user",ng-show="listID")
 			h1 {{list.title}}
 			ul
-				li(ng-repeat="item in items",ng-click="completeItem($index)")
-					{{item.title}}
+				li(ng-repeat="item in items",ng-click="completeItem($index)")  {{item.title}}
 					button(ng-click="deleteItem($index);$event.stopPropagation()") &times;
 			form(ng-submit="addItem()")
 				p

@@ -7,22 +7,11 @@ module.exports = function( app, passport ) {
 	});
 	
 	// Login & Registration
-	app.get( '/login', function( req, res, next ) {
-		res.render( 'layout.jade' );
-	})
 	app.post( '/login', 
-		passport.authenticate( 'local', { failureRedirect: '/login?fail' } ),
+		passport.authenticate( 'local', { failureRedirect: '/?login-fail' } ),
 		function(req, res) {
 			res.redirect( '/' );
 	});
-	app.post( '/', 
-		passport.authenticate( 'local', { failureRedirect: '/login?fail' } ),
-		function(req, res) {
-			res.redirect( '/' );
-	});
-	app.get( '/register', function( req, res, next ) {
-		res.render( 'layout.jade' );
-	})
 	app.post( '/register', function( req, res, next ) {
 		var User = require( './../models/users.js' );
 		var user = new User( req.body );
