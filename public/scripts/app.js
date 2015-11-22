@@ -4,7 +4,7 @@ angular.module('app', []);
 
 
 angular.module('app')
-.controller('AppCtrl', function ($scope, ListSvc, ItemSvc) {
+.controller('AppCtrl', function ($scope, ListSvc, ItemSvc, UserSvc) {
 	$scope.username = null;
 	$scope.lists = [];
 	$scope.listID = null;
