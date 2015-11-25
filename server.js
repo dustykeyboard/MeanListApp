@@ -22,7 +22,7 @@ passport.use( new Strategy(
       if ( err ) return next( err )
       if ( !user ) return next( null, false );
       if ( user.password != password ) return next( null, false );
-      console.log( 'successful auth', username );
+      console.log( 'successful auth', user.username );
       return next( null, user );
     })
   }
