@@ -11,10 +11,11 @@ The target features of **MeanListApp** are:
 
 1. User authentication via
 	* Local accounts with username and password  
-	  With client-side password encryption and no clear-text password storage. A password reset function will also be required, potentially using emails with a single use reset token
-	* Twitter authentication
-	* Facebook authentication
-	* Optionally combining multiple authentication methods for a single account
+	  With client-side password encryption and no clear-text password storage.
+	* A password reset function will also be required, potentially using emails with a single use reset token (planned)
+	* Twitter authentication (planned)
+	* Facebook authentication (planned)
+	* Optionally combining multiple authentication methods for a single account (planned)
 2. Separation of front-end application code and back-end code
 	* Front-end Web application should be completely separate from back-end
 	* Front-end communicates through API calls 
